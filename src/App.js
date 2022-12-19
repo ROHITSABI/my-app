@@ -1,10 +1,14 @@
+import { useState } from "react";
+
 function App() {
-  let counter = 100;
+  //let counter = useState(100);
+
+  let [counter, setCounter] = useState(100);
   let increment = () => {
     counter = counter + 1;
-    console.log(counter);
-  };
 
+    setCounter(counter);
+  };
   return (
     <div>
       <h1>Counter Application</h1>
