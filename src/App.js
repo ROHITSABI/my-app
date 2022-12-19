@@ -1,24 +1,10 @@
 function App() {
+  let username = "Rohit";
+  let project = "My First React Project";
   return (
     <div>
-      <Person />
-      <Person />
-      <Person />
-      <Person />
-    </div>
-  );
-}
-function Person() {
-  return (
-    <div>
-      <img src="https://picsum.photos/200" alt="" />
-      <h1>Rohit</h1>
-      <p>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum,
-        libero pariatur asperiores possimus obcaecati odio consectetur numquam
-        accusantium sit totam enim eaque assumenda rem placeat quis deserunt
-        exercitationem quasi quas?
-      </p>
+      <h1>{username}</h1>
+      <h1>{project}</h1>
     </div>
   );
 }
