@@ -1,11 +1,13 @@
 function App() {
   let title = "Map Demo";
-  let user = { id: 100, city: "Bhilai" };
+  let list = ["Bhilai", "Raipur", "Bilaspur"];
 
   return (
     <div>
       <h1>{title}</h1>
-      <h1>{user.id}</h1>
+      {list.map((item) => (
+        <h1>{item}</h1>
+      ))}
     </div>
   );
 }
