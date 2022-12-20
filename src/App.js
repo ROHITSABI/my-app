@@ -1,19 +1,11 @@
-import { useState } from "react";
-
 function App() {
-  let [counter, setCounter] = useState(50);
-  let increment = () => {
-    counter++;
-    console.log(counter);
-
-    setCounter(counter);
-  };
+  let title = "Map Demo";
+  let user = { id: 100, city: "Bhilai" };
 
   return (
     <div>
-      <h1>Counter Application</h1>
-      <h1>{counter}</h1>
-      <input type="button" value="Increment" onClick={increment} />
+      <h1>{title}</h1>
+      <h1>{user.id}</h1>
     </div>
   );
 }
