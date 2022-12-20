@@ -5,7 +5,8 @@ function App() {
   let [list, setList] = useState([]);
 
   let addItem = () => {
-    let newList = [...list, "Raipur"];
+    let textRef = document.querySelector("#textId1");
+    let newList = [...list, textRef.value];
 
     setList(newList);
   };
@@ -13,6 +14,7 @@ function App() {
   return (
     <div>
       <h1>{title}</h1>
+      <input type="text" name="" id="textId1" />
       <input type="button" value="Add Item into List" onClick={addItem} />
 
       {list.map((item) => (
