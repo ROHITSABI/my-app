@@ -1,26 +1,15 @@
-import { useState } from "react";
+import "./App.css";
 
 function App() {
-  let title = `Map Demo`;
-  let [list, setList] = useState([]);
-
-  let addItem = () => {
-    let textRef = document.querySelector("#textId1");
-    let newList = [...list, textRef.value];
-
-    setList(newList);
-  };
+  let myStyle = { color: "red", background: "purple" };
 
   return (
     <div>
-      <h1>{title}</h1>
-      <input type="text" name="" id="textId1" />
-      <input type="button" value="Add Item into List" onClick={addItem} />
-
-      {list.map((item) => (
-        <h1>{item}</h1>
-      ))}
+      <h1 className="beautify">Hello Universe</h1>
+      <h1 style={myStyle}>Hello World</h1>
+      <h1 style={{ color: "white", background: "red" }}>Hello</h1>
     </div>
   );
 }
+
 export default App;
