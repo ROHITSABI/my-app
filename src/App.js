@@ -1,36 +1,34 @@
-import { useState } from "react";
-
 function App() {
-  let [theme, setTheme] = useState("Primary");
-
-  let updateTheme = (p1 = "primary") => {
-    theme = p1;
-    setTheme(theme);
+  let clickMe1 = () => {
+    console.log("Hello World");
   };
 
+  let clickMe2 = (e) => {
+    console.log(e);
+  };
+
+  let clickMe3 = (p1) => {
+    console.log(p1);
+  };
+
+  let clickMe4 = (e, p1) => {
+    console.log(e, p1);
+  };
   return (
     <div>
-      <div className="sticky-top">
-        <h1 className={`bg-${theme} text-dark p-3`}>BootStrap Styling</h1>
-        <input
-          className="btn btn-primary"
-          type="button"
-          value="Primary Theme"
-          onClick={() => updateTheme("primary")}
-        />
-        <input
-          className="btn btn-success"
-          type="button"
-          value="Success Theme"
-          onClick={() => updateTheme("success")}
-        />
-        <input
-          className="btn btn-danger"
-          type="button"
-          value="Danger Theme"
-          onClick={() => updateTheme("danger")}
-        />
-      </div>
+      <h1>Btn Click Demo</h1>
+      <input type="button" value="Click Me1" onClick={clickMe1} />
+      <input type="button" value="Click Me2" onClick={clickMe2} />
+      <input
+        type="button"
+        value="Click Me3"
+        onClick={() => clickMe3("primary")}
+      />
+      <input
+        type="button"
+        value="Click Me4"
+        onClick={(e) => clickMe4(e, "hello moto")}
+      />
     </div>
   );
 }
