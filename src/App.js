@@ -1,41 +1,31 @@
+import axios from "axios";
 import { useState } from "react";
 
 function App() {
-  let [list, setList] = useState([
-    { message: "Hi", messageTime: new Date() },
-    { message: "How r u", messageTime: new Date() },
-    { message: "I'm fine", messageTime: new Date() },
-    { message: "Thanku", messageTime: new Date() },
-  ]);
+  let [title] = useState("API DEMO");
+  let [messageList, setMessageList] = useState([]);
 
-  let addMessage = () => {
-    let newMessage = { message: "Looking Hot", messageTime: new Date() };
-    list = [newMessage, ...list];
-    setList(list);
+  let getAllMessages = async () => {
+    let url = "http://localhost:3001/messages";
+    let response = await axios.get(url);
+
+    messageList = [...response.data];
+    setMessageList(messageList);
   };
 
   return (
     <div>
-      <h1 className="bg-primary text-white p-3">Messaging Demo</h1>
+      <h1>{title}</h1>
       <input
-        className="btn btn-success"
         type="button"
-        value="Add Message"
-        onClick={addMessage}
+        value="Make API/AJAX Call"
+        onClick={getAllMessages}
       />
 
-      {list.map((item, index) => (
-        <div key={index} className="d-flex my-1">
-          <div className="badge text-bg-primary">
-            {item.message}
-            <span className="ms-4">
-              {item.messageTime.getHours()}:{item.messageTime.getMinutes()}
-            </span>
-          </div>
-        </div>
+      {messageList.map((item) => (
+        <div>{item.message}</div>
       ))}
     </div>
   );
 }
-
 export default App;
