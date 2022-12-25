@@ -30,6 +30,7 @@ function App() {
       reply: true,
     };
     await axios.post(url, data);
+    setMessage("");
     getAllMessages();
   };
 
