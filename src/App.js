@@ -1,9 +1,13 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   let [title] = useState("API DEMO");
   let [messageList, setMessageList] = useState([]);
+
+  useEffect(() => {
+    getAllMessages();
+  }, []);
 
   let getAllMessages = async () => {
     let url = "http://localhost:3001/messages";
@@ -16,11 +20,12 @@ function App() {
   let createNewMessage = async () => {
     let url = `http://localhost:3001/message`;
     let data = {
-      message: "Test Message",
+      message: "CDAC MESSAGE",
       messageTime: new Date(),
       reply: true,
     };
     await axios.post(url, data);
+    getAllMessages();
   };
 
   return (
@@ -38,8 +43,8 @@ function App() {
         onClick={createNewMessage}
       />
 
-      {messageList.map((item) => (
-        <div>{item.message}</div>
+      {messageList.map((item, index) => (
+        <div key={index}>{item.message}</div>
       ))}
     </div>
   );
