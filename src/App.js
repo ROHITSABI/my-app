@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function App() {
+  let inputRef = useRef();
   let [title] = useState("API DEMO");
   let [message, setMessage] = useState("");
   let [messageList, setMessageList] = useState([]);
@@ -24,6 +25,10 @@ function App() {
 
   let createNewMessage = async () => {
     let url = `http://localhost:3001/message`;
+    if (!inputRef.current.checkValidity()) {
+      alert("Invalid");
+      return;
+    }
     let data = {
       message: message,
       messageTime: new Date(),
@@ -34,6 +39,12 @@ function App() {
     getAllMessages();
   };
 
+  let checkEnterCode = (e) => {
+    if (e.keyCode == 13) {
+      createNewMessage();
+    }
+  };
+
   return (
     <div>
       <h1>{title}</h1>
@@ -42,6 +53,10 @@ function App() {
         placeholder="Enter The Messages"
         value={message}
         onChange={handleOnChangeMessage}
+        onKeyUp={checkEnterCode}
+        ref={inputRef}
+        required
+        minLength={2}
       />
 
       <input
