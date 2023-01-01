@@ -1,73 +1,57 @@
-import axios from "axios";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 function App() {
-  let inputRef = useRef();
-  let [title] = useState("API DEMO");
-  let [message, setMessage] = useState("");
-  let [messageList, setMessageList] = useState([]);
-
-  useEffect(() => {
-    getAllMessages();
-  }, []);
-
-  let handleOnChangeMessage = (e) => {
-    message = e.target.value;
-    setMessage(message);
-  };
-  let getAllMessages = async () => {
-    let url = "http://localhost:3001/messages";
-    let response = await axios.get(url);
-
-    messageList = [...response.data];
-    setMessageList(messageList);
-  };
-
-  let createNewMessage = async () => {
-    let url = `http://localhost:3001/message`;
-    if (!inputRef.current.checkValidity()) {
-      alert("Invalid");
-      return;
-    }
-    let data = {
-      message: message,
-      messageTime: new Date(),
-      reply: true,
-    };
-    await axios.post(url, data);
-    setMessage("");
-    getAllMessages();
-  };
-
-  let checkEnterCode = (e) => {
-    if (e.keyCode == 13) {
-      createNewMessage();
-    }
-  };
-
   return (
     <div>
-      <h1>{title}</h1>
-      <input
-        type="text"
-        placeholder="Enter The Messages"
-        value={message}
-        onChange={handleOnChangeMessage}
-        onKeyUp={checkEnterCode}
-        ref={inputRef}
-        required
-        minLength={2}
-      />
+      <AppHeader />
+      <AppBody />
+      <AppBody />
+      <AppFooter />
+    </div>
+  );
+}
+function AppHeader() {
+  return (
+    <div className="bg-dark text-light p-3">
+      <div className="fs-3">Shopping Book</div>
+    </div>
+  );
+}
 
-      <input
-        type="button"
-        value="Make API/AJAX Post Call"
-        onClick={createNewMessage}
-      />
-
-      {messageList.map((item, index) => (
-        <div key={index}>{item.message}</div>
+function AppBody() {
+  let [list] = useState([{}, {}, {}]);
+  return (
+    <div className="row">
+      {list.map((item, index) => (
+        <div key={index} className="col-12 col-md-3 my-2">
+          <div className="card">
+            <img
+              src={"https://picsum.photos/${250+index}"}
+              style={{ height: "200px", objectfit: "cover" }}
+            />
+            <div className="card-header">Card Title</div>
+            <div className="card-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim sit
+              ratione sequi cum, expedita consequuntur! Quos voluptates ducimus
+              sit odit repudiandae, sed hic assumenda, qui, quidem ullam
+              accusamus itaque magni.
+            </div>
+          </div>
+        </div>
       ))}
+    </div>
+  );
+}
+
+function AppFooter() {
+  return (
+    <div
+      className="bg-secondary d-flex flex-column justify-content-center align-items-center"
+      style={{ height: "400px" }}
+    >
+      <div className="text-light fs-4">Copy Right By Student Community</div>
+      <div className="text-light fs-6">Follow Us @ Twitter</div>
+      <div className="text-light fs-6">Follow Us @ Youtube</div>
     </div>
   );
 }
